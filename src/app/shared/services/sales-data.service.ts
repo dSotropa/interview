@@ -29,4 +29,14 @@ export class SalesDataService {
     this.patatoSalesData.data.push(product);
     this.$potatoSales.next(this.patatoSalesData);
   }
+
+  updateRow(rowId: number, rowData: any) {
+    this.patatoSalesData.data[rowId] = rowData;
+    this.$potatoSales.next(this.patatoSalesData);
+  }
+
+  deleteRow(rowId: number) {
+    this.patatoSalesData.data.splice(rowId, 1);
+    this.$potatoSales.next(this.patatoSalesData);
+  }
 }

@@ -23,6 +23,7 @@ export class SalesComponent implements OnInit {
   searchTerm!: string;
   rows: any[] = [];
   sortMap: any = {};
+  fieldInEdit!: number;
 
   constructor(private fb: FormBuilder, private salesDataService: SalesDataService) {
   }
@@ -58,12 +59,18 @@ export class SalesComponent implements OnInit {
     }
   }
 
-  editRow(rowId: number) {
-    console.log(rowId);
+
+  saveRow(rowId: number) {
+    this.fieldInEdit = -1;
+    this.salesDataService.updateRow(rowId, this.rows[rowId]);
   }
 
-  deleteRow() {
+  editRow(rowId: number) {
+    this.fieldInEdit = rowId;
+  }
 
+  deleteRow(rowId: number) {
+    this.salesDataService.deleteRow(rowId);
   }
 
   trackByColFn(item: any) {
@@ -80,6 +87,8 @@ export class SalesComponent implements OnInit {
 
   private processData(salesData: any) {
     this.content = salesData;
+    this.subHeaders = [];
+    this.fieldIds = [];
 
     // 2 cents hack :D
     this.content.column?.forEach((column: any) => {
@@ -101,7 +110,7 @@ export class SalesComponent implements OnInit {
     this.content.data = this.content.data.map((row: any) => {
       let salesTotal = 0;
       for (let key of this.computeArray) {
-        salesTotal += row[key] || 0;
+        salesTotal += +row[key] || 0;
       }
       row.salesTotal = salesTotal;
       return row;
