@@ -30,18 +30,12 @@
         </div>
         <div class="form-group mt-3">
           <label for="salesStartDate">Sales Start Date</label>
-          <div class="input-group">
-            <input type="text"
-                   class="form-control"
-                   id="salesStartDate"
-                   formControlName="salesStartDate"
-                   placeholder="yyyy-mm-dd"
-                   name="dp"
-                   ngbDatepicker
-                   #d="ngbDatepicker"
-            />
-            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
-          </div>
+          <input type="date"
+                 class="form-control"
+                 id="salesStartDate"
+                 formControlName="salesStartDate"
+                 placeholder="yyyy-mm-dd"
+          />
           <div *ngIf="form.get('salesStartDate')?.invalid && form.get('salesStartDate')?.touched"
                class="alert alert-danger">
             {{ form.get('salesStartDate')?.errors | parseValidationErrors }}

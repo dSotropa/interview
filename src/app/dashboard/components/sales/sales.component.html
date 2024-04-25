@@ -1,6 +1,7 @@
-<div class="d-flex justify-content-end mb-3">
+<div class="d-flex justify-content-end position-relative search-section mb-3">
   <label for="search" class="me-3">Search: </label>
-  <input type="text" [(ngModel)]="searchTerm" id="search" (ngModelChange)="search()">
+  <input type="text" class="pe-3" [(ngModel)]="searchTerm" id="search" (ngModelChange)="search()">
+  <i (click)="clearSearch()" class="bi bi-x-circle-fill close-icon position-absolute"></i>
 </div>
 <table class="table">
   <thead>
@@ -29,11 +30,14 @@
   <tr *ngFor="let row of rows; let i = index; trackBy: trackByFn">
     <td *ngFor="let fieldKey of fieldIds; trackBy: trackByFieldKey">
       <span *ngIf="fieldInEdit !== i">{{ row[fieldKey] }} </span>
-      <input *ngIf="fieldInEdit === i" type="text" [(ngModel)]="row[fieldKey]">
+      <input *ngIf="fieldInEdit === i" class="form-control form-control-sm" type="text" [(ngModel)]="row[fieldKey]">
     </td>
     <td class="edit-buttons">
       <button *ngIf="fieldInEdit === i" (click)="saveRow(i)" class="btn btn-success me-2">
         <i class="bi bi-save-fill"></i>
+      </button>
+      <button *ngIf="fieldInEdit === i" (click)="cancelEdit()" class="btn btn-secondary">
+        <i class="bi bi-x"></i>
       </button>
       <button *ngIf="fieldInEdit !== i" (click)="editRow(i)" class="btn btn-primary me-2">
         <i class="bi bi-pencil"></i>

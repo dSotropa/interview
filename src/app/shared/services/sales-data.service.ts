@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 export class SalesDataService {
 
   $potatoSales: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  private patatoSalesData: any;
+  private potatoSalesData: any;
 
   constructor(private http: HttpClient) {
   }
@@ -17,8 +17,8 @@ export class SalesDataService {
     this.http.get('./assets/potato_sales.json', {responseType: 'text'})
       .pipe(
         tap((fileContent: string) => {
-          this.patatoSalesData = JSON.parse(fileContent);
-          this.$potatoSales.next(this.patatoSalesData);
+          this.potatoSalesData = JSON.parse(fileContent);
+          this.$potatoSales.next(this.potatoSalesData);
         }),
         catchError(() => of('n\a')),
         take(1))
@@ -26,17 +26,17 @@ export class SalesDataService {
   }
 
   addNewProduct(product: any) {
-    this.patatoSalesData.data.push(product);
-    this.$potatoSales.next(this.patatoSalesData);
+    this.potatoSalesData.data.push(product);
+    this.$potatoSales.next(this.potatoSalesData);
   }
 
   updateRow(rowId: number, rowData: any) {
-    this.patatoSalesData.data[rowId] = rowData;
-    this.$potatoSales.next(this.patatoSalesData);
+    this.potatoSalesData.data[rowId] = rowData;
+    this.$potatoSales.next(this.potatoSalesData);
   }
 
   deleteRow(rowId: number) {
-    this.patatoSalesData.data.splice(rowId, 1);
-    this.$potatoSales.next(this.patatoSalesData);
+    this.potatoSalesData.data.splice(rowId, 1);
+    this.$potatoSales.next(this.potatoSalesData);
   }
 }

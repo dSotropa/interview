@@ -11,13 +11,19 @@ export class ParseValidationErrorsPipe implements PipeTransform {
     // take one error at a time for each field
     switch (Object.keys(value)[0]) {
       case 'required':
-        rValue = 'The field is required';
+        rValue = 'This field is required';
         break;
       case 'maxlength':
-        rValue = 'The field is to long';
+        rValue = 'This field is to long';
         break;
       case 'minlength':
-        rValue = 'The field is to short';
+        rValue = 'This field is to short';
+        break;
+      case 'email':
+        rValue = 'This field must be an email';
+        break;
+      case 'date':
+        rValue = 'This field must be a valid date';
         break;
     }
 

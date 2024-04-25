@@ -1,10 +1,12 @@
 .main-link {
-  border: 1px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.87);
   text-decoration: none;
-  color: black;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 40px;
+  text-align: left;
 
   &:hover {
-    text-decoration: underline;
-    color: blue;
+    border-color: #3F51B5;
+    color: #3F51B5;
   }
 }

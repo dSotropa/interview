@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {tap} from 'rxjs';
 import {isNil, sortByColumn} from "../../../shared/utils/functions";
 import {SalesDataService} from "../../../shared/services/sales-data.service";
@@ -25,7 +25,7 @@ export class SalesComponent implements OnInit {
   sortMap: any = {};
   fieldInEdit!: number;
 
-  constructor(private fb: FormBuilder, private salesDataService: SalesDataService) {
+  constructor(private salesDataService: SalesDataService) {
   }
 
 
@@ -50,6 +50,11 @@ export class SalesComponent implements OnInit {
     })
   }
 
+  clearSearch() {
+    this.searchTerm = ''
+    this.rows = this.content.data;
+  }
+
   sortColumn(fieldId: string) {
     this.updateSortState(fieldId);
     if (isNil(this.sortMap[fieldId])) {
@@ -67,6 +72,10 @@ export class SalesComponent implements OnInit {
 
   editRow(rowId: number) {
     this.fieldInEdit = rowId;
+  }
+
+  cancelEdit() {
+    this.fieldInEdit = -1;
   }
 
   deleteRow(rowId: number) {
