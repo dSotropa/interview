@@ -1,10 +1,9 @@
 import {CommonModule} from '@angular/common';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, Validators} from '@angular/forms';
-import {catchError, of, take, tap} from 'rxjs';
+import {FormBuilder, FormsModule} from '@angular/forms';
+import {tap} from 'rxjs';
 import {isNil, sortByColumn} from "../../../shared/utils/functions";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {SalesDataService} from "../../../shared/services/sales-data.service";
 
 @Component({
