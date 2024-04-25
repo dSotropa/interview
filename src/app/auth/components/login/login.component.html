@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3 class="text-center">Login</h3>
+      <div class="my-3 d-flex justify-content-center"><i><b>Username: </b>test&#64;email.com</i><i class="ms-2"><b>Password: </b>Password123</i>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group mt-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="alert alert-danger">
+            {{ loginForm.get('email')?.errors | parseValidationErrors }}
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+               class="alert alert-danger">
+            {{ loginForm.get('password')?.errors | parseValidationErrors }}
+          </div>
+        </div>
+        <div *ngIf="loginFailed" class="alert alert-danger">
+          Invalid username or password
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+table {
+  th {
+    text-align: center;
+    vertical-align: middle;
+
+    .sortable-header {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  td {
+    &.edit-buttons {
+      width: 110px;
+    }
+  }
+}

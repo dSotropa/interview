@@ -1,0 +1,10 @@
+.main-link {
+  border: 1px solid black;
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    text-decoration: underline;
+    color: blue;
+  }
+}

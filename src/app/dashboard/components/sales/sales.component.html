@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-end mb-3">
+  <label for="search" class="me-3">Search: </label>
+  <input type="text" [(ngModel)]="searchTerm" id="search" (ngModelChange)="search()">
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th *ngFor="let col of content?.column; trackBy: trackByColFn" [attr.rowspan]="col?.subHeaders? 1 : 2"
+        [attr.colspan]="col?.subHeaders ? col?.subHeaders.length : 1">
+      <span *ngIf="col?.subHeaders">{{ col?.header }}</span>
+      <div *ngIf="!col?.subHeaders" class="sortable-header" (click)="sortColumn(col?.field)">
+        {{ col?.header }}
+        <i *ngIf="sortMap[col?.field] === 'desc'" class="bi bi-arrow-down"></i>
+        <i *ngIf="sortMap[col?.field] === 'asc'" class="bi bi-arrow-up"></i>
+      </div>
+    </th>
+  </tr>
+  <tr>
+    <th *ngFor="let col of subHeaders; trackBy: trackByColFn">
+          <span (click)="sortColumn(col?.field)" class="sortable-header">
+            {{ col?.field }}
+            <i *ngIf="sortMap[col?.field] === 'desc'" class="bi bi-arrow-down"></i>
+            <i *ngIf="sortMap[col?.field] === 'asc'" class="bi bi-arrow-up"></i>
+          </span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of rows; let i = index; trackBy: trackByFn">
+    <td *ngFor="let fieldKey of fieldIds; trackBy: trackByFieldKey">{{ row[fieldKey] }}</td>
+<!--    <td class="edit-buttons">-->
+<!--      <button (click)="editRow(i)" class="btn btn-primary me-2"><i class="bi bi-pencil"></i></button>-->
+<!--      <button class="btn btn-danger"><i class="bi bi-trash"></i></button>-->
+<!--    </td>-->
+  </tr>
+  </tbody>
+</table>
