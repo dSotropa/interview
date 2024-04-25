@@ -10,7 +10,7 @@ import {SalesDataService} from "../../../shared/services/sales-data.service";
 @Component({
   selector: 'app-sales',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule, FontAwesomeModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
   templateUrl: './sales.component.html',
   styleUrl: './sales.component.scss'
 })
